@@ -1,4 +1,7 @@
+import javax.swing.text.html.Option;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public class StudentService {
@@ -12,5 +15,10 @@ public class StudentService {
 
     public List<Student> getAllStudents(){
         return repo.getAllStudents();
+    }
+
+    public Student getStudentById(String id) throws StudentException {
+        return repo.findStudentById(id)
+                .orElseThrow(() -> new StudentException("Student id not found: " + id));
     }
 }
